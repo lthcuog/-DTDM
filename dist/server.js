@@ -34,6 +34,7 @@ const employee_routes_1 = require("./employee.routes");
 // Load environment variables from the .env file, where the ATLAS_URI is configured
 dotenv.config();
 const { ATLAS_URI } = process.env;
+const PORT = process.env.PORT || 3000;
 if (!ATLAS_URI) {
     console.error("No ATLAS_URI environment variable has been defined in config.env");
     process.exit(1);
@@ -44,8 +45,8 @@ if (!ATLAS_URI) {
     app.use((0, cors_1.default)());
     app.use("/employees", employee_routes_1.employeeRouter);
     // start the Express server
-    app.listen(5200, () => {
-        console.log(`Server running at http://localhost:5200...`);
+    app.listen(PORT, () => {
+        console.log(`Server running at http://localhost:${PORT}`);
     });
 })
     .catch((error) => console.error(error));
